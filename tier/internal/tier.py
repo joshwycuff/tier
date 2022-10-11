@@ -1,5 +1,5 @@
 # std
-from functools import cache
+from functools import lru_cache
 import os
 from typing import List, Optional as Opt
 
@@ -21,7 +21,7 @@ class Tier:
         self.dirpath = dirpath or os.getcwd()
         self.graph = DependencyGraph.create(self.dirpath)
 
-    @cache
+    @lru_cache
     def projects(self) -> List[PyProject]:
         return [v.data for v in self.graph.depth_first_search()]
 
@@ -143,7 +143,7 @@ class Tier:
             git.run('commit', '-m', f'chore({package_name}): initialize tier')
 
         if tag:
-            git.run('tag', f'{package_name}-{bs.get_version()}')
+            git.run('tag', '-a', f'{package_name}-{bs.get_version()}', '-m', '""')
 
     @staticmethod
     def get_project_commit_id(project: PyProject) -> str:
@@ -225,7 +225,7 @@ class Tier:
             git.run('commit', '-m', f'chore({package_name}): release {bumped}')
 
         if tag:
-            git.run('tag', f'{package_name}-{bumped}')
+            git.run('tag', '-a', f'{package_name}-{bumped}', '-m', '""')
 
     @staticmethod
     def update_project(
