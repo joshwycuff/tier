@@ -1,8 +1,7 @@
 # std
 from __future__ import annotations
 from collections import defaultdict
-from collections.abc import Iterable, Iterator
-from typing import Generator, Generic, List, TypeVar, Union
+from typing import Generator, Generic, Iterable, Iterator, List, TypeVar, Union
 
 # types
 T = TypeVar('T')
