@@ -1,0 +1,24 @@
+name: Dev Publish
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Release:
+    env:
+      PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: pip install "poetry>=1.2,<2"
+      - run: poetry run pytest
+      - run: poetry build
+      - run: git config user.email "josh.wycuff@gmail.com"
+      - run: git config user.name "Josh Wycuff"
+      - run: poetry run tier -vv bump --dev --tag
+      - run: poetry publish --username $PYPI_USERNAME --password $PYPI_PASSWORD
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      - run: git push
