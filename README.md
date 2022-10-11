@@ -1,2 +1,2 @@
-# pyv
+# tier
 Python Versioning CLI
