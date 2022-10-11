@@ -304,3 +304,7 @@ def test__bump__a():
 
 def test__bump__dev():
     assert Version(1, 2, 3).bump_dev() == Version(1, 2, 3, dev=0)
+
+
+def test__dev__bump__dev():
+    assert Version(1, 2, 3, dev=0).bump_dev() == Version(1, 2, 3, dev=1)

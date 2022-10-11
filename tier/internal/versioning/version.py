@@ -156,19 +156,19 @@ class Version:
         return Version(self.major, self.minor, self.patch + 1)
 
     def bump_post(self) -> Version:
-        return Version(self.major, self.minor, self.patch, (self.post or -1) + 1)
+        return Version(self.major, self.minor, self.patch, (-1 if self.post is None else self.post) + 1)
 
     def bump_rc(self) -> Version:
-        return Version(self.major, self.minor, self.patch, rc=(self.rc or -1) + 1)
+        return Version(self.major, self.minor, self.patch, rc=(-1 if self.rc is None else self.rc) + 1)
 
     def bump_b(self) -> Version:
-        return Version(self.major, self.minor, self.patch, b=(self.b or -1) + 1)
+        return Version(self.major, self.minor, self.patch, b=(-1 if self.b is None else self.b) + 1)
 
     def bump_a(self) -> Version:
-        return Version(self.major, self.minor, self.patch, a=(self.a or -1) + 1)
+        return Version(self.major, self.minor, self.patch, a=(-1 if self.a is None else self.a) + 1)
 
     def bump_dev(self) -> Version:
-        return Version(self.major, self.minor, self.patch, dev=(self.dev or -1) + 1)
+        return Version(self.major, self.minor, self.patch, dev=(-1 if self.dev is None else self.dev) + 1)
 
     @classmethod
     def from_str(cls, s: str) -> Version:
