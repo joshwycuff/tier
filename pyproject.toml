@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "tier"
-version = "0.1.0.dev1"
+version = "0.1.0.dev2"
 description = "Python Versioning CLI"
 authors = [ "Josh Wycuff <Joshua.Wycuff@turner.com>",]
 license = "MIT"
@@ -13,7 +13,7 @@ readme = "README.md"
 include = "tier"
 
 [tool.tier]
-commit-id = "9a08807848d1897d42983c1bf1a1b38de57ba6bf"
+commit-id = "156a38aeee8f2d4394c0b1c56e45502c5250982f"
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4"
