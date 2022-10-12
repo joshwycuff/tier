@@ -9,8 +9,8 @@ from tier.internal.versioning.bump_type import BumpType
 class CommitAnalyzer:
     MAJOR_PATTERN_1 = re.compile(r'\w+(\(\w+\))?!: .*(\n\n(.*\n)*BREAKING[ -]CHANGE: .*\n(.*\n)*)?')
     MAJOR_PATTERN_2 = re.compile(r'\w+(\(\w+\))?!?: .*\n\n(.*\n)*BREAKING[ -]CHANGE: .*(\n(.*\n)*)?')
-    MINOR_PATTERN = re.compile(r'feat(\(\w+\))?: .*(\n\n(.*\n)*)?', flags=re.IGNORECASE)
-    PATCH_PATTERN = re.compile(r'fix(\(\w+\))?: .*(\n\n(.*\n)*)?', flags=re.IGNORECASE)
+    MINOR_PATTERN = re.compile(r'(feat|minor)(\(\w+\))?: .*(\n\n(.*\n)*)?', flags=re.IGNORECASE)
+    PATCH_PATTERN = re.compile(r'(fix|patch)(\(\w+\))?: .*(\n\n(.*\n)*)?', flags=re.IGNORECASE)
 
     def analyze_commit(self, commit: Commit) -> BumpType:
         return self.analyze_message(commit.message)

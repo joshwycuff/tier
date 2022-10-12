@@ -1,6 +1,6 @@
 # internal
 from tier.internal.logging import log
-from tier.internal.pyproject import PyProject
+from tier.internal.configs.pyproject import PyProject
 from tier.internal.tier import Tier
 
 
@@ -22,5 +22,5 @@ def update(
         tier = Tier()
         tier.update(commit=commit, tag=tag)
     else:
-        project = PyProject()
+        project = PyProject.from_dirpath(auto_write=True)
         Tier.update_project(project=project, commit=commit, tag=tag)

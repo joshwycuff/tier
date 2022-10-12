@@ -1,9 +1,8 @@
 # std
-import os
 
 # internal
 from tier.internal.logging import log
-from tier.internal.pyproject import PyProject
+from tier.internal.configs.pyproject import PyProject
 from tier.internal.tier import Tier
 
 
@@ -37,7 +36,7 @@ def bump(
             dev=dev,
         )
     else:
-        project = PyProject()
+        project = PyProject.from_dirpath(auto_write=True)
         Tier.bump_project_from_options(
             project=project,
             commit=commit,

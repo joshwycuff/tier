@@ -16,8 +16,10 @@ DESCRIPTION = """Python versioning CLI"""
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument('--verbose', '-v', action='count', default=0)
+parser.add_argument('--dirty', action='store_true', help='Allow execution with uncommitted changes present.')
+parser.add_argument('--dry-run', action='store_true', help='Flag to perform dry run.')
 
-sub_parsers = parser.add_subparsers(required=True)
+sub_parsers = parser.add_subparsers(required=True, dest='subcommand')
 
 # tier version
 parser_version = sub_parsers.add_parser('version')

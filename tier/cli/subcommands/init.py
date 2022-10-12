@@ -1,13 +1,8 @@
 # std
-from typing import Optional as Opt
 
 # internal
-from tier.internal.errors import TierException
-from tier.internal.git.commit import Commit
-from tier.internal.git import git
-from tier.internal.git.git import Git
 from tier.internal.logging import log
-from tier.internal.pyproject import PyProject
+from tier.internal.configs.pyproject import PyProject
 from tier.internal.tier import Tier
 
 
@@ -29,5 +24,5 @@ def init(
         tier = Tier()
         tier.initialize(commit=commit, tag=tag)
     else:
-        project = PyProject()
+        project = PyProject.from_dirpath(auto_write=True)
         Tier.initialize_project(project=project, commit=commit, tag=tag)
